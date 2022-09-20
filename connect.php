@@ -1,15 +1,10 @@
 <?php
-$review = $_POST['notes'];
-
-$conn =new mysqli('localhost','root','','test');
-if(!$conn->mysqli_connect_error){
-die('Connection Error: '. $conn->connect_error);
-} else{
-$stmt = $conn->prepare("insert into user_review(notes) values(?)");
-$stmt = bind_param("s",$review);
+$note = $_GET['note'];
+$conn= new mysqli("localhost","root","","share");
+$stmt = $conn->prepare("insert into shares(answer) values(?)");
+$stmt->bind_param("s",$note);
 $stmt->execute();
 echo "submited succsfully";
 $stml->close();
 $conn->close();
-}
 ?>
